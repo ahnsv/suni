@@ -13,8 +13,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class TutorAccount extends AbstractEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @Column(unique = true, nullable = false)
     private String username;
     @Column(nullable = false)
@@ -24,8 +22,7 @@ public class TutorAccount extends AbstractEntity {
     private Tutor tutor;
 
     @Builder
-    public TutorAccount(Long id, String username, String password, String email, Tutor tutor) {
-        this.id = id;
+    public TutorAccount(String username, String password, String email, Tutor tutor) {
         this.username = username;
         this.password = password;
         this.email = email;

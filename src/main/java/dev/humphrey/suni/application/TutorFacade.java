@@ -19,10 +19,10 @@ public class TutorFacade {
     private final TutorService tutorService;
     private final ScheduleService scheduleService;
 
-    public Long createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
-        var createdUUID = tutorAccountService.createTutorAccount(accountFormDetail);
-        log.info("Created UUID: {}", createdUUID.toString());
-        return createdUUID;
+    public String createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
+        var createdUsername = tutorAccountService.createTutorAccount(accountFormDetail);
+        log.info("Created UUID: {}", createdUsername);
+        return createdUsername;
     }
 
     public void updateTutorInfo(String username, TutorApiDto.TutorInfoUpdateForm tutorInfoUpdateForm) {

@@ -24,7 +24,7 @@ public class Tutor extends AbstractEntity {
     private String nickName;
 
     @OneToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "username")
+    @JoinColumn(name = "account_id")
     private TutorAccount accountId;
     // private List<Course> courses;
 

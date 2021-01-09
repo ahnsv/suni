@@ -26,17 +26,17 @@ public class TutorAccountService {
     }
 
     @Transactional
-    public Long createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
+    public String createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
         TutorAccount nextAccount = TutorAccount.builder()
                 .username(accountFormDetail.getUsername())
                 .password(accountFormDetail.getPassword())
                 .email(accountFormDetail.getEmail())
                 .build();
         log.info("Tutor Account를 만들었습니다. Tutor Account: {}", nextAccount);
-        tutorAccountRepository.save(nextAccount);
+        tutorAccountRepository.saveAndFlush(nextAccount);
         var emptyTutorEntity = Tutor.builder().accountId(nextAccount).build();
         log.info("Tutor Entity를 만들었습니다. Tutor : {}", emptyTutorEntity);
         tutorRepository.save(emptyTutorEntity);
-        return nextAccount.getId();
+        return nextAccount.getUsername();
     }
 }
