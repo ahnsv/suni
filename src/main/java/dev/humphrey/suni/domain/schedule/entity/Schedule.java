@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "schedules")
@@ -17,7 +16,7 @@ import java.util.UUID;
 public class Schedule extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
     private String title;
     private String description;
     @ManyToOne
@@ -29,7 +28,7 @@ public class Schedule extends AbstractEntity {
     private ZonedDateTime willNotifyAt;
 
     @Builder
-    public Schedule(UUID id, String title, String description, Tutor tutor, ZonedDateTime startAt, ZonedDateTime endAt, ZonedDateTime willNotifyAt) {
+    public Schedule(Long id, String title, String description, Tutor tutor, ZonedDateTime startAt, ZonedDateTime endAt, ZonedDateTime willNotifyAt) {
         this.id = id;
         this.title = title;
         this.description = description;

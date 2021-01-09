@@ -19,7 +19,7 @@ public class TutorFacade {
     private final TutorService tutorService;
     private final ScheduleService scheduleService;
 
-    public UUID createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
+    public Long createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
         var createdUUID = tutorAccountService.createTutorAccount(accountFormDetail);
         log.info("Created UUID: {}", createdUUID.toString());
         return createdUUID;

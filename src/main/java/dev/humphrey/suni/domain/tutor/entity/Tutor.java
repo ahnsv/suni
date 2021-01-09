@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -16,7 +15,7 @@ import java.util.UUID;
 public class Tutor extends AbstractEntity {
     @Id
     @GeneratedValue()
-    private UUID id;
+    private Long id;
     @Setter
     private String firstName;
     @Setter
@@ -24,13 +23,13 @@ public class Tutor extends AbstractEntity {
     @Setter
     private String nickName;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "username")
     private TutorAccount accountId;
     // private List<Course> courses;
 
     @Builder
-    public Tutor(UUID id, String firstName, String lastName, TutorAccount accountId) {
+    public Tutor(Long id, String firstName, String lastName, TutorAccount accountId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

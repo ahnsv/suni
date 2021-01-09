@@ -4,10 +4,8 @@ import dev.humphrey.suni.domain.common.AbstractEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Getter
 @Entity
@@ -16,7 +14,7 @@ import java.util.UUID;
 public class TutorAccount extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
     @Column(unique = true, nullable = false)
     private String username;
     @Column(nullable = false)
@@ -26,7 +24,7 @@ public class TutorAccount extends AbstractEntity {
     private Tutor tutor;
 
     @Builder
-    public TutorAccount(UUID id, String username, String password, String email, Tutor tutor) {
+    public TutorAccount(Long id, String username, String password, String email, Tutor tutor) {
         this.id = id;
         this.username = username;
         this.password = password;

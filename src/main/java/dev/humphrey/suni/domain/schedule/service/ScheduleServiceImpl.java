@@ -22,7 +22,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public UUID createSchedule(Schedule schedule) {
+    public Long createSchedule(Schedule schedule) {
         var nextSchedule = scheduleRepository.save(schedule);
         return nextSchedule.getId();
     }

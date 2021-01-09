@@ -26,7 +26,7 @@ public class TutorAccountService {
     }
 
     @Transactional
-    public UUID createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
+    public Long createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
         TutorAccount nextAccount = TutorAccount.builder()
                 .username(accountFormDetail.getUsername())
                 .password(accountFormDetail.getPassword())
