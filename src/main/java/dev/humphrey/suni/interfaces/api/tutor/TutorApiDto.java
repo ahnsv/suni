@@ -47,4 +47,12 @@ public class TutorApiDto {
                     .build();
         }
     }
+
+    public static class TutorScheduleUpdateForm {
+        private String title;
+        private String description;
+        private ZonedDateTime startAt;
+        private ZonedDateTime endAt;
+        private ZonedDateTime willNotifyAt;
+    }
 }

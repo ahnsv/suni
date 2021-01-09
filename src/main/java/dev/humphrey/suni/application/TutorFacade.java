@@ -31,7 +31,7 @@ public class TutorFacade {
 
     public void createSchedule(String username, TutorCriteria.TutorCreateScheduleRequest scheduleRequest) {
         var tutor = tutorService.findTutorByUsername(username);
-        var scheduleUUID = scheduleService.createSchedule(
+        UUID scheduleID = scheduleService.createSchedule(
                 Schedule.builder()
                         .title(scheduleRequest.getTitle())
                         .description(scheduleRequest.getDescription())
@@ -41,6 +41,6 @@ public class TutorFacade {
                         .tutor(tutor)
                         .build()
         );
-        log.info("Schedule이 생성됐습니다. UUID: {}", scheduleUUID);
+        log.info("Schedule이 생성됐습니다. UUID: {}", scheduleID);
     }
 }

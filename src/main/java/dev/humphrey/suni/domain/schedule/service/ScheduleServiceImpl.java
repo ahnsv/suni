@@ -3,6 +3,7 @@ package dev.humphrey.suni.domain.schedule.service;
 import dev.humphrey.suni.domain.schedule.entity.Schedule;
 import dev.humphrey.suni.domain.schedule.repository.ScheduleRepository;
 import dev.humphrey.suni.domain.tutor.entity.Tutor;
+import dev.humphrey.suni.interfaces.api.tutor.TutorApiDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,20 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public Long createSchedule(Schedule schedule) {
+    public UUID createSchedule(Schedule schedule) {
         var nextSchedule = scheduleRepository.save(schedule);
         return nextSchedule.getId();
+    }
+
+//    @Override
+//    public void updateSchedule(UUID id, Schedule nextSchedule) {
+//        var selectedSchedule = scheduleRepository.findById(id);
+//        selectedSchedule.stream().
+//    }
+
+
+    @Override
+    public void deleteScheduleByID(UUID id) {
+        scheduleRepository.deleteById(id);
     }
 }
