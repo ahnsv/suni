@@ -1,11 +1,13 @@
 package dev.humphrey.suni.interfaces.api.tutor;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import dev.humphrey.suni.application.TutorFacade;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,6 +16,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.filter.CharacterEncodingFilter;
+
+import javax.transaction.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -44,7 +48,7 @@ class TutorApiControllerTest {
     @DisplayName("/api/v1/tutor/register가 200코드와 json을 반환해야한다.")
     void createTutorAccount() throws Exception {
         // given
-        TutorAccountDto.TutorAccountForm accountForm = new TutorAccountDto.TutorAccountForm();
+        TutorApiDto.TutorAccountForm accountForm = new TutorApiDto.TutorAccountForm();
         accountForm.setEmail("abc@def.com");
         accountForm.setUsername("abcdef");
         accountForm.setPassword("ghijklmnop");
@@ -55,5 +59,27 @@ class TutorApiControllerTest {
         mockMvc.perform(post("/api/v1/tutor/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(accountFormJson)).andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("/api/v1/tutor/update/info가 200코드와 json을 반환해야한다.")
+    void updateTutorInfoUpdate() throws Exception {
+        // given
+        TutorApiDto.TutorAccountForm accountForm = new TutorApiDto.TutorAccountForm();
+        accountForm.setEmail("abc@def.com");
+        accountForm.setUsername("abcdef");
+        accountForm.setPassword("ghijklmnop");
+        var uuid = tutorFacade.createTutorAccount(accountForm);
+
+        var infoUpdateForm = TutorApiDto.TutorInfoUpdateForm.builder()
+                .firstName("Doe")
+                .lastName("John")
+                .nickName("Humphrey").build();
+        var mapper = new ObjectMapper();
+        var infoUpdateFormJson = mapper.writeValueAsString(infoUpdateForm);
+
+        // when, then
+        mockMvc.perform(post("/api/v1/tutor/update/info")
+                .param("username", "abcdef").content(infoUpdateFormJson)).andExpect(status().isOk());
     }
 }

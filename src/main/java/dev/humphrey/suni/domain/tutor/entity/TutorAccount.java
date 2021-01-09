@@ -17,8 +17,9 @@ public class TutorAccount extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @NonNull
+    @Column(unique = true, nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
     private String email;
     @OneToOne(mappedBy = "accountId")

@@ -4,6 +4,7 @@ import dev.humphrey.suni.domain.common.AbstractEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -16,10 +17,15 @@ public class Tutor extends AbstractEntity {
     @Id
     @GeneratedValue()
     private UUID id;
+    @Setter
     private String firstName;
+    @Setter
     private String lastName;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    @Setter
+    private String nickName;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "account_id", referencedColumnName = "username")
     private TutorAccount accountId;
     // private List<Course> courses;
 

@@ -1,13 +1,20 @@
 package dev.humphrey.suni.interfaces.api.tutor;
 
+
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Getter
-@NoArgsConstructor
-public class TutorAccountDto {
+public class TutorApiDto {
+
+    @Data
+    @Builder
+    public static class TutorInfoUpdateForm {
+        private String firstName;
+        private String lastName;
+        private String nickName;
+    }
+
     @Data
     @ToString(exclude = "password")
     public static class TutorAccountForm {
@@ -15,5 +22,4 @@ public class TutorAccountDto {
         private String password;
         private String email;
     }
-
 }
