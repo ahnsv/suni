@@ -24,9 +24,10 @@ public class Tutor extends AbstractEntity {
     // private List<Course> courses;
 
     @Builder
-    public Tutor(UUID id, String firstName, String lastName) {
+    public Tutor(UUID id, String firstName, String lastName, TutorAccount accountId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.accountId = accountId;
     }
 }
