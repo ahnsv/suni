@@ -19,13 +19,13 @@ public class TutorApiDto {
         private String nickName;
     }
 
-    @Data
+    @Getter
     @Builder
     @ToString(exclude = "password")
     public static class TutorAccountForm {
-        private String username;
-        private String password;
-        private String email;
+        private final String username;
+        private final String password;
+        private final String email;
     }
 
     @Getter

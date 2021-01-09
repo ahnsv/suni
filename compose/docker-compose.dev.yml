@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  front:
+    build: "../front"
+    depends_on:
+      - back
+    environment:
+      - STAGE=dev
+    ports:
+      - 13000:3000
+  back:
+    image: suni:latest
+    depends_on:
+      - db
+    environment:
+      - STAGE=dev
+    ports:
+      - 18080:18080
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=dev
+      - STAGE=dev
+    ports:
+      - 15432:5432
