@@ -1,6 +1,7 @@
 package dev.humphrey.suni.domain.tutor.entity;
 
 import dev.humphrey.suni.domain.common.AbstractEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -23,6 +24,7 @@ public class TutorAccount extends AbstractEntity {
     @OneToOne(mappedBy = "accountId")
     private Tutor tutor;
 
+    @Builder
     public TutorAccount(UUID id, String username, String password, String email, Tutor tutor) {
         this.id = id;
         this.username = username;
