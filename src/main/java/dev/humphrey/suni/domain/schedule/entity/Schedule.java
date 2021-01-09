@@ -24,18 +24,18 @@ public class Schedule extends AbstractEntity {
     private Tutor tutor;
     // private Course course;
     // private Tutee tutee;
-    private ZonedDateTime willStartAt;
-    private ZonedDateTime willEndAt;
+    private ZonedDateTime startAt;
+    private ZonedDateTime endAt;
     private ZonedDateTime willNotifyAt;
 
     @Builder
-    public Schedule(UUID id, String title, String description, Tutor tutor, ZonedDateTime willStartAt, ZonedDateTime willEndAt, ZonedDateTime willNotifyAt) {
+    public Schedule(UUID id, String title, String description, Tutor tutor, ZonedDateTime startAt, ZonedDateTime endAt, ZonedDateTime willNotifyAt) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.tutor = tutor;
-        this.willStartAt = willStartAt;
-        this.willEndAt = willEndAt;
+        this.startAt = startAt;
+        this.endAt = endAt;
         this.willNotifyAt = willNotifyAt;
     }
 }
