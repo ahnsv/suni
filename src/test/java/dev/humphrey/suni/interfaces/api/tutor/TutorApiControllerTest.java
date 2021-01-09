@@ -48,10 +48,7 @@ class TutorApiControllerTest {
     @DisplayName("/api/v1/tutor/register가 200코드와 json을 반환해야한다.")
     void createTutorAccount() throws Exception {
         // given
-        TutorApiDto.TutorAccountForm accountForm = new TutorApiDto.TutorAccountForm();
-        accountForm.setEmail("abc@def.com");
-        accountForm.setUsername("abcdef");
-        accountForm.setPassword("ghijklmnop");
+        TutorApiDto.TutorAccountForm accountForm = TutorApiDto.TutorAccountForm.builder().username("abcdef").password("ghijklmnop").email("abc@def.com").build();
         var mapper = new ObjectMapper();
         var accountFormJson = mapper.writeValueAsString(accountForm);
 
@@ -65,10 +62,7 @@ class TutorApiControllerTest {
     @DisplayName("/api/v1/tutor/update/info가 200코드와 json을 반환해야한다.")
     void updateTutorInfoUpdate() throws Exception {
         // given
-        TutorApiDto.TutorAccountForm accountForm = new TutorApiDto.TutorAccountForm();
-        accountForm.setEmail("abc@def.com");
-        accountForm.setUsername("abcdef");
-        accountForm.setPassword("ghijklmnop");
+        TutorApiDto.TutorAccountForm accountForm = TutorApiDto.TutorAccountForm.builder().username("abcdef").password("ghijklmnop").email("abc@def.com").build();
         var uuid = tutorFacade.createTutorAccount(accountForm);
 
         var infoUpdateForm = TutorApiDto.TutorInfoUpdateForm.builder()

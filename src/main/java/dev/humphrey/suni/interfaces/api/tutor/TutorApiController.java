@@ -29,4 +29,11 @@ public class TutorApiController {
         tutorFacade.updateTutorInfo(username, infoUpdateForm);
         return CommonResponse.success(HttpStatus.OK);
     }
+
+    @PostMapping("/create/schedule")
+    public CommonResponse createSchedule(@RequestParam String username, @RequestBody TutorApiDto.TutorScheduleForm scheduleForm) {
+        log.info("[TutorApiController.createSchedule] Request = {}", scheduleForm);
+        tutorFacade.createSchedule(username, scheduleForm.convert());
+        return CommonResponse.success(HttpStatus.OK);
+    }
 }

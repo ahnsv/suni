@@ -19,6 +19,12 @@ public class TutorAccountService {
     private final TutorAccountRepository tutorAccountRepository;
     private final TutorRepository tutorRepository;
 
+
+    @Transactional
+    public TutorAccount findTutorAccountByUsername(String username) {
+        return tutorAccountRepository.findByUsername(username);
+    }
+
     @Transactional
     public UUID createTutorAccount(TutorApiDto.TutorAccountForm accountFormDetail) {
         TutorAccount nextAccount = TutorAccount.builder()
