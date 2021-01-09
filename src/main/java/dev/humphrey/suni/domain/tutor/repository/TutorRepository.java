@@ -1,0 +1,9 @@
+package dev.humphrey.suni.domain.tutor.repository;
+
+import dev.humphrey.suni.domain.tutor.entity.Tutor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface TutorRepository extends JpaRepository<Tutor, UUID> {
+}
