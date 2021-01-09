@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -21,6 +18,9 @@ public class Tutor extends AbstractEntity {
     private UUID id;
     private String firstName;
     private String lastName;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private TutorAccount accountId;
     // private List<Course> courses;
 
     @Builder

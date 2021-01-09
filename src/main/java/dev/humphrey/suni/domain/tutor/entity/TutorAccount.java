@@ -3,6 +3,7 @@ package dev.humphrey.suni.domain.tutor.entity;
 import dev.humphrey.suni.domain.common.AbstractEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -15,14 +16,18 @@ public class TutorAccount extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @NonNull
     private String username;
     private String password;
     private String email;
+    @OneToOne(mappedBy = "accountId")
+    private Tutor tutor;
 
-    public TutorAccount(UUID id, String username, String password, String email) {
+    public TutorAccount(UUID id, String username, String password, String email, Tutor tutor) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.tutor = tutor;
     }
 }
